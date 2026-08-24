@@ -40,6 +40,8 @@ export const pt: UiStrings = {
       'Esta entrada ainda não foi traduzida — exibindo o original.',
     seriesLabel: 'trilha',
     seriesProgress: 'parte {n} de {m}',
+    soundtrack: 'trilha sonora',
+    soundtrackPlay: 'carregar o player (embed externo)',
     prev: 'anterior',
     next: 'próxima',
     comments: 'Comentários',

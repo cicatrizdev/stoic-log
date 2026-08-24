@@ -42,6 +42,8 @@ export type UiStrings = {
     seriesLabel: string
     /** Template: `part {n} of {m}`. */
     seriesProgress: string
+    soundtrack: string
+    soundtrackPlay: string
     prev: string
     next: string
     comments: string

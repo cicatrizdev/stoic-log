@@ -6,6 +6,7 @@ import { compilePost } from '@/lib/posts/mdx'
 import { buildPostMetadata } from '@/lib/metadata'
 import { mdxComponents } from '@/components/mdx/mdx-components'
 import { PostMeta } from '@/components/post/PostMeta'
+import { Soundtrack } from '@/components/post/Soundtrack'
 import { TagList } from '@/components/post/TagList'
 import { TranslationNotice } from '@/components/post/TranslationNotice'
 import { SeriesNav } from '@/components/post/SeriesNav'
@@ -51,6 +52,15 @@ export default async function PostPage({ params }: Props) {
       </header>
 
       {post.isFallback && <TranslationNotice locale={locale} />}
+
+      {post.frontmatter.soundtrack && (
+        <Soundtrack
+          url={post.frontmatter.soundtrack.url}
+          title={post.frontmatter.soundtrack.title}
+          label={ui.post.soundtrack}
+          playLabel={ui.post.soundtrackPlay}
+        />
+      )}
 
       <div className="prose">
         <Content components={mdxComponents} />

@@ -24,6 +24,9 @@ updated: '2026-09-01' # optional
 tags: ['stoicism', 'legacy-code'] # must exist in src/content/tags.ts
 series: 'memento-mori' # optional; must exist in src/content/series.ts
 seriesOrder: 1 # required iff series is set
+soundtrack: # optional; Spotify or YouTube URL, rendered click-to-load
+  url: 'https://open.spotify.com/playlist/3DLg3kfnKptS0KSAVMYuDm'
+  title: 'Medieval lofi — Lofi Girl'
 draft: true # optional; hidden in production only
 ```
 
