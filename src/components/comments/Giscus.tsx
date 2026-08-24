@@ -11,8 +11,10 @@ import styles from './Giscus.module.css'
  */
 const REPO = 'cicatrizdev/stoic-log'
 const CATEGORY = 'Comments'
-const REPO_ID = process.env.NEXT_PUBLIC_GISCUS_REPO_ID
-const CATEGORY_ID = process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID
+// Public identifiers (they ship in the page HTML either way); env overrides.
+const REPO_ID = process.env.NEXT_PUBLIC_GISCUS_REPO_ID ?? 'R_kgDOUC2Zug'
+const CATEGORY_ID =
+  process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID ?? 'DIC_kwDOUC2Zus4DEGJt'
 
 const giscusLang: Record<Locale, string> = { en: 'en', pt: 'pt' }
 
