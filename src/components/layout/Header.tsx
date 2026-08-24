@@ -1,13 +1,13 @@
 import Link from 'next/link'
 import type { Locale } from '@/lib/i18n'
 import { getUi, site } from '@/content'
-import { embedSrc } from '@/lib/embed'
+import { parseSoundtrack } from '@/lib/embed'
 import { LocaleSwitcher } from '@/components/i18n/LocaleSwitcher'
 import { ThemeToggle } from '@/components/theme/ThemeToggle'
 import { HeaderPlayer } from './HeaderPlayer'
 import styles from './Header.module.css'
 
-const soundtrackSrc = embedSrc(site.soundtrack.url)
+const soundtrack = parseSoundtrack(site.soundtrack.url)
 
 export function Header({ locale }: { locale: Locale }) {
   const ui = getUi(locale)
@@ -24,12 +24,17 @@ export function Header({ locale }: { locale: Locale }) {
           <Link href={`/${locale}/search`}>{ui.nav.search}</Link>
         </nav>
         <div className={styles.controls}>
-          {soundtrackSrc && (
+          {soundtrack && (
             <HeaderPlayer
-              embedSrc={soundtrackSrc}
+              embed={soundtrack}
               title={site.soundtrack.title}
-              openLabel={ui.chrome.soundtrackOpen}
-              closeLabel={ui.chrome.soundtrackClose}
+              labels={{
+                open: ui.chrome.soundtrackOpen,
+                close: ui.chrome.soundtrackClose,
+                play: ui.chrome.soundtrackPlay,
+                pause: ui.chrome.soundtrackPause,
+                volume: ui.chrome.soundtrackVolume,
+              }}
             />
           )}
           <LocaleSwitcher locale={locale} label={ui.chrome.localeLabel} />

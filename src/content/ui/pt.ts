@@ -14,6 +14,9 @@ export const pt: UiStrings = {
     localeLabel: 'Switch to English',
     soundtrackOpen: 'Abrir o player da trilha sonora de leitura',
     soundtrackClose: 'Esconder o player (a música continua)',
+    soundtrackPlay: 'Tocar',
+    soundtrackPause: 'Pausar',
+    soundtrackVolume: 'Volume',
   },
   nav: {
     posts: 'posts',

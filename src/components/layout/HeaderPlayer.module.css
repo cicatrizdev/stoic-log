@@ -30,7 +30,7 @@
   box-shadow: 0 8px 28px color-mix(in srgb, var(--fg) 12%, transparent);
 }
 
-/* Hidden, never unmounted: the iframe keeps playing while out of sight. */
+/* Hidden, never unmounted: the player keeps playing while out of sight. */
 .panel:not([data-open]) {
   visibility: hidden;
   opacity: 0;
@@ -67,6 +67,56 @@
 
 .close:hover {
   color: var(--accent);
+}
+
+.video {
+  border-radius: 6px;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: var(--surface);
+}
+
+.video :global(iframe) {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+.playPause {
+  background: none;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--accent);
+  font-size: var(--text-sm);
+  line-height: 1;
+  padding: var(--space-2) var(--space-3);
+}
+
+.playPause:hover {
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.volume {
+  flex: 1;
+  accent-color: var(--accent);
+  min-width: 0;
+}
+
+.volumeValue {
+  font-size: var(--text-xs);
+  color: var(--dim);
+  min-width: 3.5ch;
+  text-align: right;
 }
 
 .frame {

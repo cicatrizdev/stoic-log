@@ -17,6 +17,9 @@ export type UiStrings = {
     localeLabel: string
     soundtrackOpen: string
     soundtrackClose: string
+    soundtrackPlay: string
+    soundtrackPause: string
+    soundtrackVolume: string
   }
   nav: {
     posts: string
