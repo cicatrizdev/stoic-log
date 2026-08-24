@@ -1,0 +1,31 @@
+.toggle {
+  display: none;
+  align-items: baseline;
+  background: none;
+  border: 0;
+  padding: var(--space-1) 0;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+
+:global(html[data-theme]) .toggle {
+  display: inline-flex;
+}
+
+.flag {
+  color: var(--dim);
+}
+
+.whenLight,
+.whenDark {
+  color: var(--accent);
+}
+
+:global(html[data-theme='dark']) .whenLight {
+  display: none;
+}
+
+:global(html:not([data-theme='dark'])) .whenDark {
+  display: none;
+}

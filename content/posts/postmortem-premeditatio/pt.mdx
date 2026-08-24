@@ -1,0 +1,45 @@
+---
+title: 'O post-mortem é uma premeditatio malorum'
+description: 'Os estoicos ensaiavam a perda antes que ela acontecesse. A engenharia chama isso de pre-mortem — e quase nunca pratica.'
+date: '2026-08-17'
+tags: ['stoicism', 'postmortem', 'incidents']
+series: 'premeditatio-malorum'
+seriesOrder: 1
+---
+
+<Epigraph source="Sêneca, Cartas a Lucílio, 91">
+  O inesperado pesa mais. O que foi previsto fere menos ao chegar.
+</Epigraph>
+
+Sêneca escreveu essa carta depois que um incêndio consumiu Lyon em uma noite. Uma cidade inteira, e nenhum plano de rollback. O conselho dele para o amigo abalado não foi "isso nunca vai se repetir" — foi o exercício que os estoicos chamavam de *premeditatio malorum*: percorrer, com antecedência e de olhos abertos, tudo que pode dar errado.
+
+A indústria de software redescobriu esse exercício duas vezes e deu dois nomes a ele. Quando o fazemos depois do desastre, chamamos de **post-mortem**. Quando o fazemos antes — raramente —, chamamos de **pre-mortem**.
+
+## Ensaiar a falha não é pessimismo
+
+A objeção clássica ao *premeditatio* é a mesma nos dois milênios: "pensar no pior não atrai o pior?" Sêneca responderia que a alternativa é pior: ser surpreendido. O exercício não é ruminar ansiosamente — é visitar o cenário com precisão, uma vez, para que ele perca o poder de choque.
+
+Engenharia tem uma vantagem sobre a vida: aqui, ensaiar a falha *muda a probabilidade dela*. Quando o time se pergunta "como esse lançamento pode fracassar?" antes do lançamento, não está apenas se preparando emocionalmente — está encontrando o índice que falta, o timeout otimista, a dependência sem fallback.
+
+## O ritual do pre-mortem
+
+O formato que uso é roubado meio de Gary Klein, meio de Sêneca:
+
+1. **Declare o desastre como fato.** Não "o que pode dar errado?", mas "estamos seis meses no futuro e o projeto fracassou. O que aconteceu?" A mudança de tempo verbal desarma o otimismo institucional — ninguém precisa defender o plano, porque o plano já morreu.
+2. **Cada pessoa escreve sozinha.** Cinco minutos, lista própria. O sênior que fala primeiro contamina a sala inteira.
+3. **Ordene por vergonha, não por probabilidade.** A pergunta mais útil é: *qual dessas causas nos deixaria mais constrangidos por não ter previsto?* Essa é quase sempre a que merece um teste hoje.
+
+<Callout label="na prática">
+  Chaos engineering é premeditatio malorum com orçamento: derrubar o pod de
+  propósito é ensaiar a perda em ambiente controlado, exatamente como Sêneca
+  recomendava viver alguns dias por mês como pobre — não para sofrer, mas para
+  descobrir que o cenário temido é administrável.
+</Callout>
+
+## Blameless é uma palavra estoica
+
+O post-mortem sem culpados que o Google popularizou é, no fundo, uma posição filosófica: a de que o engenheiro que apertou o botão estava operando um sistema, e o sistema inteiro é que produziu o resultado. Epicteto diria o mesmo com outras palavras — julgar a pessoa pelo que não estava em seu controle é errar o alvo do julgamento.
+
+Um bom post-mortem lê o passado como o *premeditatio* lê o futuro: sem drama, sem culpa, com a pergunta única que importa — *o que este cenário nos ensina a preparar?*
+
+O incêndio de Lyon não foi evitado. O próximo, talvez.

@@ -1,0 +1,27 @@
+.title {
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  line-height: var(--leading-tight);
+  margin-bottom: var(--space-3);
+}
+
+.blurb {
+  color: var(--dim);
+  margin-bottom: var(--space-6);
+  max-width: var(--measure);
+}
+
+.status {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.statusBody {
+  color: var(--dim);
+  max-width: var(--measure);
+}
+
+.back {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}

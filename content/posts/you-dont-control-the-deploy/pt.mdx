@@ -1,0 +1,58 @@
+---
+title: 'Você não controla o deploy de sexta'
+description: 'A dicotomia do controle aplicada a incidentes: o que Epicteto diria no meio de um rollback às 18h47 de uma sexta-feira.'
+date: '2026-08-10'
+tags: ['stoicism', 'incidents']
+series: 'dichotomy-of-control'
+seriesOrder: 1
+---
+
+<Epigraph source="Epicteto, Encheirídion, 1">
+  Algumas coisas dependem de nós; outras não dependem de nós.
+</Epigraph>
+
+São 18h47 de uma sexta-feira. O deploy saiu às 18h30 — aprovado, testado, coberto. Dezessete minutos depois, o dashboard fica vermelho, o canal de incidentes acorda e alguém escreve a frase que todo dev conhece: *"alguém mudou alguma coisa?"*
+
+Nesse momento existem duas pessoas possíveis dentro de você. Uma delas gasta os próximos vinte minutos em negociação com a realidade: *não era pra ter dado errado, o QA passou, foi aprovado no review, por que logo hoje.* A outra abre o runbook.
+
+A diferença entre as duas não é técnica. É a pergunta mais antiga da filosofia estoica: **o que, exatamente, depende de você?**
+
+## As duas listas
+
+Epicteto abre o *Encheirídion* com uma divisão brutal de tão simples. De um lado, o que é seu: julgamento, impulso, desejo, aversão — em termos modernos, sua atenção, sua resposta, seu processo. Do outro, todo o resto: corpo, reputação, cargo. O roadmap. O mercado. O deploy que já saiu.
+
+Repare no detalhe que quase todo mundo erra: **o incidente em curso está na segunda lista.** Depois que o pacote chegou em produção, o outage não é mais uma coisa que você controla — é uma coisa que aconteceu. O que resta de controle é menor e mais preciso:
+
+- O diagnóstico metódico em vez do palpite ansioso.
+- O rollback executado com calma em vez do hotfix heroico às pressas.
+- O tom da sua mensagem no canal do incidente.
+- O que você aprende e escreve depois.
+
+```bash
+# O que depende de você cabe num terminal:
+git revert --no-edit a1b2c3d
+git push origin main
+# O resto — quem notou, quem cobra, o que dirão — não cabe.
+```
+
+## Controle não é indiferença
+
+A leitura preguiçosa do estoicismo para aqui: "então tanto faz, não controlo mesmo". É o oposto. Epicteto era obcecado por responsabilidade — só que pela responsabilidade *certa*.
+
+Você não controla se o deploy de sexta quebra. Você controla o teste que escreveu antes, o feature flag que permitiu desligar sem redeploy, o alerta que disparou em dois minutos em vez de dez. A preparação inteira estava na primeira lista; você a exerceu ou não muito antes das 18h47.
+
+<Callout label="na prática">
+  Antes do próximo deploy arriscado, escreva as duas listas de verdade. Na
+  primeira: o que você pode fazer **agora** (testes, plano de rollback, quem
+  avisar). Na segunda: tudo que você está tentado a ruminar (a reação do
+  gerente, o timing, a sorte). Trabalhe a primeira até o fim. Recuse
+  conscientemente cada item da segunda.
+</Callout>
+
+## O dev estoico no war room
+
+Marco Aurélio comandou Roma durante uma peste e duas guerras escrevendo, à noite, lembretes para si mesmo sobre não perder a cabeça. O war room de um incidente é a versão em escala reduzida do mesmo exercício: um ambiente que pune o pânico e recompensa quem separa, em tempo real, o que aconteceu do que fazer agora.
+
+A ironia é que o engenheiro que aceita não controlar o outage responde melhor ao outage. Quem gasta energia brigando com o fato consome exatamente o recurso — atenção — que o diagnóstico exige.
+
+O deploy de sexta vai quebrar de novo algum dia. Isso não depende de você. A pessoa que estará no teclado quando acontecer — essa, sim.

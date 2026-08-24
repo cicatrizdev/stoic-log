@@ -1,0 +1,84 @@
+.hero {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--dim);
+}
+
+.manifestoLead {
+  font-size: var(--text-xl);
+  line-height: 1.45;
+  max-width: var(--measure);
+}
+
+.manifesto {
+  font-size: var(--text-lg);
+  color: color-mix(in srgb, var(--fg) 78%, var(--bg));
+  max-width: var(--measure);
+}
+
+.section {
+  margin-top: var(--space-16);
+}
+
+.sectionTitle {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--dim);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+
+.postList {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.more {
+  margin-top: var(--space-6);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+.seriesList {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--space-6);
+}
+
+.seriesItem {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.seriesTitle {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.seriesTitle:hover {
+  color: var(--accent);
+}
+
+.seriesDescription {
+  color: var(--dim);
+  font-size: var(--text-sm);
+  max-width: var(--measure);
+}
+
+.newsletterBlurb {
+  color: var(--dim);
+  margin-bottom: var(--space-4);
+  max-width: var(--measure);
+}

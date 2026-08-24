@@ -1,0 +1,53 @@
+.title {
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  line-height: var(--leading-tight);
+  margin-bottom: var(--space-3);
+}
+
+.blurb {
+  color: var(--dim);
+  margin-bottom: var(--space-8);
+  max-width: var(--measure);
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--space-8);
+}
+
+.item {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.name {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.name:hover {
+  color: var(--accent);
+}
+
+.count {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--dim);
+}
+
+.description {
+  color: var(--dim);
+  font-size: var(--text-sm);
+  max-width: var(--measure);
+}
+
+.postList {
+  display: grid;
+  gap: var(--space-8);
+  counter-reset: part;
+}

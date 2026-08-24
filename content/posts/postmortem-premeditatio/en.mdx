@@ -1,0 +1,46 @@
+---
+title: 'The post-mortem is a premeditatio malorum'
+description: 'The Stoics rehearsed loss before it happened. Engineering calls this a pre-mortem — and almost never practices it.'
+date: '2026-08-17'
+tags: ['stoicism', 'postmortem', 'incidents']
+series: 'premeditatio-malorum'
+seriesOrder: 1
+---
+
+<Epigraph source="Seneca, Letters to Lucilius, 91">
+  The unexpected weighs heaviest. What has been foreseen wounds less when it
+  arrives.
+</Epigraph>
+
+Seneca wrote that letter after a fire consumed Lyon in a single night. An entire city, and no rollback plan. His advice to his shaken friend was not "this will never happen again" — it was the exercise the Stoics called *premeditatio malorum*: walking through everything that can go wrong, in advance and with open eyes.
+
+The software industry rediscovered this exercise twice and gave it two names. When we do it after the disaster, we call it a **post-mortem**. When we do it before — rarely — we call it a **pre-mortem**.
+
+## Rehearsing failure is not pessimism
+
+The classic objection to *premeditatio* has been the same for two millennia: "doesn't dwelling on the worst attract the worst?" Seneca would answer that the alternative is worse: being surprised. The exercise is not anxious rumination — it is visiting the scenario precisely, once, so it loses its power to shock.
+
+Engineering has one advantage over life: here, rehearsing the failure *changes its probability*. When a team asks "how could this launch fail?" before the launch, it is not just preparing emotionally — it is finding the missing index, the optimistic timeout, the dependency without a fallback.
+
+## The pre-mortem ritual
+
+The format I use is stolen half from Gary Klein, half from Seneca:
+
+1. **Declare the disaster as fact.** Not "what could go wrong?", but "it is six months from now and the project failed. What happened?" The change of tense disarms institutional optimism — nobody has to defend the plan, because the plan is already dead.
+2. **Everyone writes alone.** Five minutes, private list. The senior who speaks first contaminates the whole room.
+3. **Sort by embarrassment, not probability.** The most useful question is: *which of these causes would embarrass us most for not having foreseen it?* That one almost always deserves a test today.
+
+<Callout label="in practice">
+  Chaos engineering is premeditatio malorum with a budget: killing the pod on
+  purpose is rehearsing loss in a controlled environment, exactly as Seneca
+  recommended living a few days a month as a poor man — not to suffer, but to
+  discover that the feared scenario is manageable.
+</Callout>
+
+## Blameless is a Stoic word
+
+The blameless post-mortem Google popularized is, at bottom, a philosophical position: the engineer who pressed the button was operating a system, and it was the whole system that produced the outcome. Epictetus would say the same in other words — judging a person by what was not in their control is aiming the judgment at the wrong target.
+
+A good post-mortem reads the past the way *premeditatio* reads the future: no drama, no blame, with the single question that matters — *what does this scenario teach us to prepare?*
+
+The fire of Lyon was not prevented. The next one, perhaps.

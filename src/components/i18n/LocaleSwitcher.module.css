@@ -1,0 +1,19 @@
+.switch {
+  display: inline-flex;
+  align-items: baseline;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-decoration: none;
+}
+
+.switch:hover .value {
+  text-decoration: underline;
+}
+
+.flag {
+  color: var(--dim);
+}
+
+.value {
+  color: var(--accent);
+}

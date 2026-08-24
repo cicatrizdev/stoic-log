@@ -1,0 +1,74 @@
+.form {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.email {
+  flex: 1 1 16rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  padding: var(--space-2) var(--space-3);
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+}
+
+.email::placeholder {
+  color: var(--dim);
+}
+
+.submit {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  padding: var(--space-2) var(--space-4);
+  background: var(--accent);
+  color: var(--bg);
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.submit:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.error {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--err);
+}
+
+.sent {
+  padding: var(--space-4) var(--space-6);
+  background: var(--surface);
+  border-radius: 6px;
+}
+
+.sentTitle {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--ok);
+}
+
+.sentBody {
+  margin-top: var(--space-1);
+  font-size: var(--text-sm);
+  color: var(--dim);
+}

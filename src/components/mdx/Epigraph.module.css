@@ -1,0 +1,22 @@
+.epigraph {
+  margin: var(--space-8) 0;
+  padding-left: var(--space-6);
+  border-left: 2px solid var(--accent);
+}
+
+.quote {
+  font-style: italic;
+  font-size: var(--text-lg);
+  color: color-mix(in srgb, var(--fg) 85%, var(--bg));
+}
+
+.quote :global(p) + :global(p) {
+  margin-top: var(--space-2);
+}
+
+.source {
+  margin-top: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--dim);
+}

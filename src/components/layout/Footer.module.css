@@ -1,0 +1,32 @@
+.footer {
+  border-top: 1px solid var(--rule);
+  margin-top: var(--space-16);
+}
+
+.inner {
+  max-width: calc(var(--measure) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: var(--space-6) var(--gutter) var(--space-8);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-6);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--dim);
+}
+
+.links {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.links a,
+.colophon a {
+  color: var(--dim);
+}
+
+.links a:hover,
+.colophon a:hover {
+  color: var(--accent);
+}

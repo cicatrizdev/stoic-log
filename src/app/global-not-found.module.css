@@ -1,0 +1,25 @@
+.status {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--dim);
+  margin-bottom: var(--space-3);
+}
+
+.title {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  line-height: var(--leading-tight);
+  margin-bottom: var(--space-3);
+}
+
+.flavor {
+  font-style: italic;
+  color: var(--dim);
+  margin-bottom: var(--space-4);
+}
+
+.second {
+  margin-top: var(--space-12);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--rule);
+}

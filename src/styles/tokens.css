@@ -1,0 +1,80 @@
+/*
+ * Design tokens — the only place colors, type and spacing are defined.
+ * Light = "marble" (warm stone, Pompeiian red). Dark = "bronze" (aged metal).
+ * Prose is serif; code, metadata and chrome are mono. That contrast is the identity.
+ */
+:root {
+  color-scheme: light;
+
+  --bg: #f6f3ec;
+  --surface: #ede8dc;
+  --fg: #1d1b17;
+  --dim: #6b6558;
+  --accent: #9a4a2e;
+  --ok: #4a7a3a;
+  --err: #b3261e;
+  --rule: color-mix(in srgb, var(--fg) 14%, transparent);
+  --selection: color-mix(in srgb, var(--accent) 24%, transparent);
+
+  --font-serif:
+    var(--font-source-serif), Georgia, 'Times New Roman', 'Iowan Old Style',
+    serif;
+  --font-mono:
+    var(--font-plex), ui-monospace, 'SF Mono', Menlo, Consolas,
+    'Liberation Mono', monospace;
+
+  /* type scale — serif for prose, mono runs one notch smaller optically */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1.125rem;
+  --text-lg: 1.3125rem;
+  --text-xl: clamp(1.5rem, 1.2rem + 1.4vw, 1.9375rem);
+  --text-2xl: clamp(1.875rem, 1.4rem + 2.4vw, 2.75rem);
+  --leading: 1.7;
+  --leading-tight: 1.25;
+
+  /* layout */
+  --measure: 42rem;
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  --header-h: 3.25rem;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  --focus: 2px solid var(--accent);
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #12130f;
+  --surface: #1c1d16;
+  --fg: #e8e2d4;
+  --dim: #8a8574;
+  --accent: #c9973f;
+  --ok: #7fb069;
+  --err: #e5776b;
+  --rule: color-mix(in srgb, var(--fg) 16%, transparent);
+  --selection: color-mix(in srgb, var(--accent) 32%, transparent);
+}
+
+/* No-JS / no stored preference: follow the OS. Keep in sync with the block above. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --bg: #12130f;
+    --surface: #1c1d16;
+    --fg: #e8e2d4;
+    --dim: #8a8574;
+    --accent: #c9973f;
+    --ok: #7fb069;
+    --err: #e5776b;
+    --rule: color-mix(in srgb, var(--fg) 16%, transparent);
+    --selection: color-mix(in srgb, var(--accent) 32%, transparent);
+  }
+}
