@@ -12,6 +12,8 @@ export const pt: UiStrings = {
     themeLight: 'claro',
     themeDark: 'escuro',
     localeLabel: 'Switch to English',
+    soundtrackOpen: 'Abrir o player da trilha sonora de leitura',
+    soundtrackClose: 'Esconder o player (a música continua)',
   },
   nav: {
     posts: 'posts',
@@ -40,8 +42,6 @@ export const pt: UiStrings = {
       'Esta entrada ainda não foi traduzida — exibindo o original.',
     seriesLabel: 'trilha',
     seriesProgress: 'parte {n} de {m}',
-    soundtrack: 'trilha sonora',
-    soundtrackPlay: 'carregar o player (embed externo)',
     prev: 'anterior',
     next: 'próxima',
     comments: 'Comentários',

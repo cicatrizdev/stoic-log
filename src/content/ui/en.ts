@@ -12,6 +12,8 @@ export const en: UiStrings = {
     themeLight: 'light',
     themeDark: 'dark',
     localeLabel: 'Mudar para português',
+    soundtrackOpen: 'Open the reading soundtrack player',
+    soundtrackClose: 'Hide the player (music keeps playing)',
   },
   nav: {
     posts: 'posts',
@@ -40,8 +42,6 @@ export const en: UiStrings = {
       'This entry has not been translated yet — showing the original.',
     seriesLabel: 'track',
     seriesProgress: 'part {n} of {m}',
-    soundtrack: 'soundtrack',
-    soundtrackPlay: 'load the player (external embed)',
     prev: 'previous',
     next: 'next',
     comments: 'Comments',

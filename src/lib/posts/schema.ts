@@ -15,18 +15,6 @@ export const frontmatterSchema = z
     updated: isoDate.optional(),
     /** Slugs from the registry in `src/content/tags.ts`. */
     tags: z.array(z.string().regex(/^[a-z0-9-]+$/)).min(1),
-    /** Optional per-essay soundtrack, rendered as a click-to-load embed. */
-    soundtrack: z
-      .object({
-        url: z
-          .string()
-          .regex(
-            /^https:\/\/(open\.spotify\.com|www\.youtube\.com|youtu\.be)\//,
-            'must be an open.spotify.com or YouTube URL'
-          ),
-        title: z.string().min(1),
-      })
-      .optional(),
     /** Slug from the registry in `src/content/series.ts`. */
     series: z.string().optional(),
     seriesOrder: z.number().int().min(1).optional(),

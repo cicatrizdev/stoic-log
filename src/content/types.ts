@@ -15,6 +15,8 @@ export type UiStrings = {
     themeLight: string
     themeDark: string
     localeLabel: string
+    soundtrackOpen: string
+    soundtrackClose: string
   }
   nav: {
     posts: string
@@ -42,8 +44,6 @@ export type UiStrings = {
     seriesLabel: string
     /** Template: `part {n} of {m}`. */
     seriesProgress: string
-    soundtrack: string
-    soundtrackPlay: string
     prev: string
     next: string
     comments: string
