@@ -11,9 +11,11 @@ seriesOrder: 1
   Some things are within our power, and some are not.
 </Epigraph>
 
-It's 6:47pm on a Friday. The deploy went out at 6:30 — approved, tested, covered. Seventeen minutes later the dashboard goes red, the incident channel wakes up, and someone types the sentence every developer knows: *"did anyone change anything?"*
+It's 6:47pm on a Friday. The deploy went out at 6:30 — approved in review, covered in tests, decorated with green checkmarks like a straight-A report card. Seventeen minutes later the dashboard goes red, the incident channel wakes up, and someone types the ancestral sentence: *"did anyone change anything?"*
 
-In that moment there are two possible people inside you. One spends the next twenty minutes negotiating with reality: *it wasn't supposed to fail, QA passed, it was approved in review, why today of all days.* The other one opens the runbook.
+(Nobody ever changed anything. Systems break on their own, out of boredom.)
+
+In that moment there are two possible people inside you. One spends the next twenty minutes negotiating with reality: *it wasn't supposed to fail, QA passed, it was approved, why today.* The other opens the runbook. The first one tends to produce better LinkedIn posts; the second one tends to resolve the incident.
 
 The difference between them is not technical. It is the oldest question in Stoic philosophy: **what, exactly, is up to you?**
 
@@ -21,11 +23,11 @@ The difference between them is not technical. It is the oldest question in Stoic
 
 Epictetus opens the *Enchiridion* with a division so simple it feels brutal. On one side, what is yours: judgment, impulse, desire, aversion — in modern terms, your attention, your response, your process. On the other, everything else: body, reputation, title. The roadmap. The market. The deploy that already shipped.
 
-Notice the detail almost everyone gets wrong: **the ongoing incident is on the second list.** Once the package reached production, the outage is no longer something you control — it is something that happened. What remains under your control is smaller and more precise:
+Notice the detail almost everyone gets wrong: **the ongoing incident is on the second list.** Once the package reached production, the outage is not something you control — it is something that happened. What remains under your control is smaller and more precise:
 
 - Methodical diagnosis instead of anxious guessing.
-- A calm rollback instead of a heroic rushed hotfix.
-- The tone of your message in the incident channel.
+- A calm rollback instead of the heroic hotfix — the one that spawns a second incident to keep the first company.
+- The tone of your message in the channel (it will become a screenshot; write accordingly).
 - What you learn and write down afterwards.
 
 ```bash
@@ -37,22 +39,23 @@ git push origin main
 
 ## Control is not indifference
 
-The lazy reading of Stoicism stops here: "so nothing matters, I don't control it anyway." It is the opposite. Epictetus was obsessed with responsibility — just the *right* responsibility.
+The Twitter-thread-sized reading of Stoicism stops here: "so nothing matters, I don't control it anyway." It is the opposite, and Epictetus — a former slave who could not afford cynicism — was obsessed with responsibility. Just the *right* responsibility.
 
-You don't control whether the Friday deploy breaks. You control the test you wrote beforehand, the feature flag that let you switch it off without a redeploy, the alert that fired in two minutes instead of ten. The entire preparation lived on the first list; you exercised it, or didn't, long before 6:47pm.
+You don't control whether the Friday deploy breaks. You control the test you wrote beforehand, the feature flag that lets you switch it off without a redeploy, the alert that fires in two minutes instead of ten. The entire preparation lived on the first list, and you exercised it — or didn't — long before 6:47pm. The incident doesn't reveal your luck; it reveals your process.
 
 <Callout label="in practice">
   Before your next risky deploy, actually write the two lists. On the first:
   what you can do **now** (tests, rollback plan, who to warn). On the second:
   everything you are tempted to ruminate about (your manager's reaction, the
   timing, luck). Work the first list to the end. Consciously refuse every item
-  on the second.
+  on the second. The second list is longer and pays nothing — it is your
+  panic's algorithm asking for engagement.
 </Callout>
 
 ## The Stoic developer in the war room
 
-Marcus Aurelius ran Rome through a plague and two wars while writing himself nightly reminders about not losing his head. An incident war room is the scaled-down version of the same exercise: an environment that punishes panic and rewards whoever can separate, in real time, what happened from what to do next.
+Marcus Aurelius ran Rome through a plague and two wars while writing himself nightly reminders about not losing his head. The war room is the scaled-down version of the same exercise: an environment that punishes panic, rewards whoever separates *what happened* from *what to do next* — and still, every company keeps the legend of the hero who "pulled an all-nighter" fixing the problem they caused.
 
-The irony is that the engineer who accepts not controlling the outage responds better to the outage. Whoever spends energy fighting the fact consumes exactly the resource — attention — that diagnosis requires.
+The irony is that the engineer who accepts not controlling the outage responds better to the outage. Whoever fights the fact consumes exactly the resource diagnosis requires: attention. And attention, contrary to what your backlog believes, does not scale horizontally.
 
 The Friday deploy will break again someday. That is not up to you. The person at the keyboard when it happens — that one is.

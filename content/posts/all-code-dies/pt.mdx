@@ -12,37 +12,37 @@ seriesOrder: 1
   coisa aparece, já foi levada embora, e outra passa em seu lugar.
 </Epigraph>
 
-Em algum servidor, agora, roda o código mais importante que você já escreveu. Daqui a dez anos — talvez cinco, talvez dois — ele não existirá. Reescrito, migrado, desligado num sprint de "limpeza de legado" por alguém que nunca saberá seu nome e vai xingar uma variável que você batizou com carinho.
+Em algum servidor, agora, roda o código mais importante que você já escreveu. Daqui a dez anos — talvez cinco, talvez no próximo replanejamento — ele não existirá. Reescrito, migrado, desligado num sprint de "limpeza de legado" por alguém que nunca saberá seu nome e vai xingar em voz alta o `utils.ts` que você jura que fazia sentido na época.
 
-Isso não é uma tragédia. É a única promessa que o software cumpre sempre.
+Isso não é uma tragédia. É a única promessa que o software cumpre sem atrasar.
 
 ## O império de jQuery
 
-Houve um mundo em que jQuery rodava em mais de 70% da web. Backbone foi obrigatório. CoffeeScript foi o futuro. Cada uma dessas tecnologias teve seus artesãos — gente que dominou cada detalhe, escreveu os livros, deu as palestras. O trabalho deles foi excelente e foi embora mesmo assim, como vai embora o meu e o seu.
+Houve um mundo em que jQuery rodava em mais de 70% da web. Backbone foi obrigatório. CoffeeScript foi o futuro. Cada uma dessas tecnologias teve seus artesãos — gente que dominou cada detalhe, escreveu os livros, deu as palestras, discutiu com estranhos na internet defendendo a escolha certa. O trabalho deles foi excelente e foi embora mesmo assim, como vai embora o meu e o seu. A diferença é que ninguém fez conferência chamada "CoffeeScript morreu?". Ele só morreu, sem direito a keynote.
 
 Os romanos tinham um funcionário para isso: dizem que, no triunfo, um escravo segurava a coroa sobre o general e sussurrava *memento mori* — lembre-se de que você morre. Não para estragar a festa; para dar à festa o tamanho certo.
 
-O framework da moda merece o mesmo sussurro.
+O framework da temporada merece o mesmo sussurro. De preferência durante a keynote.
 
 ## Apego é dívida técnica emocional
 
-O dev que se recusa a deletar o módulo que escreveu, que defende a arquitetura antiga porque foi ele quem a desenhou, que sabota silenciosamente a migração — todos sofrem do mesmo engano que os estoicos passaram séculos desmontando: confundir o que fazemos com o que somos.
+O dev que se recusa a deletar o módulo que escreveu. O que defende a arquitetura antiga porque foi ele quem a desenhou. O que sabota a migração em silêncio, um comentário cético por vez — todo time tem um, e se você não sabe quem é o do seu, tenho más notícias. Todos sofrem do mesmo engano que os estoicos passaram séculos desmontando: confundir o que fazemos com o que somos.
 
-*Ownership* saudável é da primeira lista de Epicteto: cuidado, atenção, responsabilidade pelo que está sob seu teclado hoje. Apego é da segunda: a exigência de que o mundo preserve o que você fez. A primeira melhora o sistema. A segunda só garante que a deleção inevitável doa mais.
+*Ownership* saudável é da primeira lista de Epicteto: cuidado, atenção, responsabilidade pelo que está sob seu teclado hoje. Apego é da segunda: a exigência de que o mundo preserve o que você fez. A primeira melhora o sistema. A segunda só garante que a deleção inevitável doa mais — e que você seja lembrado no time como o capítulo difícil da migração, não como o autor do código.
 
 <Callout label="na prática">
   Escreva código fácil de deletar: módulos com fronteiras claras, dependências
   apontando para dentro, nomes que explicam a intenção para o coveiro futuro.
   "Fácil de deletar" e "bem projetado" são quase sempre a mesma propriedade —
-  o memento mori é um princípio de arquitetura disfarçado.
+  o memento mori é um princípio de arquitetura disfarçado de frase de caneca.
 </Callout>
 
 ## O que sobra
 
 Se todo código morre, o que você está construindo de fato?
 
-A resposta estoica: você. O julgamento que ficou mais afiado a cada revisão, o gosto que se formou, a calma que você aprendeu a manter em produção — isso migra de sistema em sistema, de stack em stack, e nenhum sprint de limpeza alcança.
+A resposta estoica: você. O julgamento que ficou mais afiado a cada review, o gosto que se formou, a calma que você aprendeu a manter em produção — isso migra de sistema em sistema, de stack em stack, e nenhum sprint de limpeza alcança. É o único artefato do seu trabalho sem data de deprecação.
 
-Marco Aurélio escreveu as *Meditações* para si mesmo, sem plano de publicação, num acampamento militar às margens do Danúbio. O império que ele administrava — o sistema em produção mais importante do mundo — caiu. Os apontamentos privados sobre como manter a cabeça no lugar continuam em produção há dezoito séculos.
+Marco Aurélio escreveu as *Meditações* para si mesmo, sem plano de publicação, num acampamento militar às margens do Danúbio. O império que ele administrava — o sistema em produção mais crítico do mundo, com a pior observabilidade da história — caiu. Os apontamentos privados sobre como manter a cabeça no lugar continuam em produção há dezoito séculos, sem um único incidente.
 
 Vale para o seu trabalho também: o código é o artefato. Você é o projeto.
