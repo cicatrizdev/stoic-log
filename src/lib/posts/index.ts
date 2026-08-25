@@ -112,14 +112,20 @@ export const getEntries = cache(async (): Promise<PostEntry[]> => {
     const other = available
       .map((l) => versions[l]!)
       .find((v) => v !== canonical)
-    if (
-      other &&
-      (other.frontmatter.series !== canonical.frontmatter.series ||
-        other.frontmatter.seriesOrder !== canonical.frontmatter.seriesOrder)
-    ) {
-      problems.push(
-        `${slug}: translations disagree about series/seriesOrder — they must match`
-      )
+    if (other) {
+      if (
+        other.frontmatter.series !== canonical.frontmatter.series ||
+        other.frontmatter.seriesOrder !== canonical.frontmatter.seriesOrder
+      ) {
+        problems.push(
+          `${slug}: translations disagree about series/seriesOrder — they must match`
+        )
+      }
+      if (other.frontmatter.draft !== canonical.frontmatter.draft) {
+        problems.push(
+          `${slug}: translations disagree about draft status — they must match`
+        )
+      }
     }
     entries.push({ slug, versions, availableLocales: available, canonical })
   }
@@ -195,7 +201,7 @@ export async function postsBySeries(
 ): Promise<ResolvedPost[]> {
   return (await listPosts(locale))
     .filter((p) => p.canonical.series === series)
-    .sort((a, b) => a.canonical.seriesOrder! - b.canonical.seriesOrder!)
+    .sort((a, b) => (a.canonical.seriesOrder ?? 0) - (b.canonical.seriesOrder ?? 0))
 }
 
 export type SeriesPosition = {

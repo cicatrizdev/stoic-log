@@ -19,15 +19,21 @@ const CATEGORY_ID =
 const giscusLang: Record<Locale, string> = { en: 'en', pt: 'pt' }
 
 function currentTheme(): string {
-  return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light'
+  const explicit = document.documentElement.dataset.theme
+  if (explicit === 'dark' || explicit === 'light') return explicit
+  return window.matchMedia('(prefers-color-scheme: dark)').matches
+    ? 'dark'
+    : 'light'
 }
 
 function GiscusInner({ slug, locale }: { slug: string; locale: Locale }) {
   const ref = useRef<HTMLDivElement>(null)
+  const injectedRef = useRef(false)
 
   useEffect(() => {
     const host = ref.current
-    if (!host || host.childElementCount > 0) return
+    if (!host || injectedRef.current) return
+    injectedRef.current = true
     const script = document.createElement('script')
     script.src = 'https://giscus.app/client.js'
     script.async = true

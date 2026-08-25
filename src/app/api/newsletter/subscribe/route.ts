@@ -10,17 +10,10 @@ import { sendConfirmation } from '@/lib/newsletter/resend'
  * Same-origin check for browsers that send an Origin header: the origin must
  * be this very deployment (production host, preview host or localhost).
  */
-function originAllowed(request: NextRequest, origin: string): boolean {
-  const proto =
-    request.headers.get('x-forwarded-proto') ??
-    new URL(request.url).protocol.replace(':', '')
-  const host =
-    request.headers.get('x-forwarded-host') ?? request.headers.get('host')
-  const self = host ? `${proto}://${host}` : null
+function originAllowed(_request: NextRequest, origin: string): boolean {
   const allowed = new Set(
     [
       site.url,
-      self,
       process.env.VERCEL_URL && `https://${process.env.VERCEL_URL}`,
       process.env.VERCEL_BRANCH_URL &&
         `https://${process.env.VERCEL_BRANCH_URL}`,
@@ -28,7 +21,13 @@ function originAllowed(request: NextRequest, origin: string): boolean {
         `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`,
     ].filter((o): o is string => Boolean(o))
   )
-  return allowed.has(origin)
+  if (allowed.has(origin)) return true
+  try {
+    const url = new URL(origin)
+    return url.hostname === 'localhost' || url.hostname === '127.0.0.1'
+  } catch {
+    return false
+  }
 }
 
 type Parsed = { kind: 'json' | 'form'; data: Record<string, unknown> }

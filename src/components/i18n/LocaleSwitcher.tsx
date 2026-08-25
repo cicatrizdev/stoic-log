@@ -31,7 +31,7 @@ export function LocaleSwitcher({ locale, label }: Props) {
       aria-label={label}
       title={label}
       onClick={() => {
-        document.cookie = `locale=${target}; path=/; max-age=31536000; SameSite=Lax`
+        document.cookie = `locale=${target}; path=/; max-age=31536000; SameSite=Lax; Secure`
       }}
     >
       <span className={styles.flag} aria-hidden="true">

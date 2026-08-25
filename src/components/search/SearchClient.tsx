@@ -32,6 +32,7 @@ export function SearchClient({
 }) {
   const [query, setQuery] = useState('')
   const [mini, setMini] = useState<MiniSearch<SearchDoc> | null>(null)
+  const [error, setError] = useState(false)
   const loadingRef = useRef(false)
 
   async function ensureIndex() {
@@ -61,6 +62,8 @@ export function SearchClient({
       })
       instance.addAll(docs)
       setMini(instance)
+    } catch {
+      setError(true)
     } finally {
       loadingRef.current = false
     }
@@ -68,7 +71,14 @@ export function SearchClient({
 
   const hits: Hit[] =
     mini && query.trim()
-      ? (mini.search(query).slice(0, 20) as unknown as Hit[])
+      ? mini
+          .search(query)
+          .slice(0, 20)
+          .map((r) => ({
+            slug: String(r.slug ?? r.id),
+            title: String(r.title ?? ''),
+            description: String(r.description ?? ''),
+          }))
       : []
 
   const showEmpty =
@@ -89,7 +99,7 @@ export function SearchClient({
         aria-label={labels.title}
         autoFocus
       />
-      <p className={styles.hint}>{labels.hint}</p>
+      <p className={styles.hint}>{error ? labels.noResults : labels.hint}</p>
       {showEmpty && (
         <p className={styles.empty}>
           {labels.noResults} <strong>{query}</strong>

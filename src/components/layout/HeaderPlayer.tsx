@@ -82,7 +82,8 @@ export function HeaderPlayer({ embed, title, labels }: Props) {
   const [playing, setPlaying] = useState(false)
   const [volume, setVolume] = useState(DEFAULT_VOLUME)
   const holderRef = useRef<HTMLDivElement>(null)
-  const playerRef = useRef<YtPlayer | null>(null)
+  const playerRef = useRef<(YtPlayer & { destroy?(): void }) | null>(null)
+  const volumeRef = useRef(DEFAULT_VOLUME)
 
   useEffect(() => {
     if (!loaded || embed.provider !== 'youtube') return
@@ -98,13 +99,15 @@ export function HeaderPlayer({ embed, title, labels }: Props) {
         videoId: embed.videoId,
         playerVars: { playsinline: 1, controls: 0, rel: 0 },
         events: {
-          onReady: (e) => e.target.setVolume(DEFAULT_VOLUME),
+          onReady: (e) => e.target.setVolume(volumeRef.current),
           onStateChange: (e) => setPlaying(e.data === YT.PlayerState.PLAYING),
         },
       })
     })
     return () => {
       cancelled = true
+      playerRef.current?.destroy?.()
+      playerRef.current = null
     }
   }, [loaded, embed])
 
@@ -123,6 +126,7 @@ export function HeaderPlayer({ embed, title, labels }: Props) {
   function onVolume(event: ChangeEvent<HTMLInputElement>) {
     const next = Number(event.target.value)
     setVolume(next)
+    volumeRef.current = next
     playerRef.current?.setVolume(next)
   }
 
