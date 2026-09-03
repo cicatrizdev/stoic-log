@@ -28,11 +28,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
       - run: node scripts/publish-due.mjs
       - name: commit and push
+        id: publish
         run: |
           if git diff --quiet; then
             echo "nothing due today"
+            echo "slugs=" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           git config user.name "github-actions[bot]"
@@ -41,3 +45,14 @@ jobs:
           git add content/posts
           git commit -m "chore: publish ${slugs} (scheduled)"
           git push
+          echo "slugs=${slugs}" >> "$GITHUB_OUTPUT"
+      # Waits for each post to answer 200 on the production host before
+      # emailing anyone, and skips any edition Resend already knows about.
+      - name: broadcast the edition
+        if: steps.publish.outputs.slugs != ''
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          RESEND_AUDIENCE_ID_PT: ${{ secrets.RESEND_AUDIENCE_ID_PT }}
+          RESEND_AUDIENCE_ID_EN: ${{ secrets.RESEND_AUDIENCE_ID_EN }}
+          NEWSLETTER_FROM_EMAIL: ${{ secrets.NEWSLETTER_FROM_EMAIL }}
+        run: node scripts/broadcast.mjs ${{ steps.publish.outputs.slugs }}

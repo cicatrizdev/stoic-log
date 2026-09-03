@@ -90,11 +90,11 @@ Para manter a fila viva na cadência quinzenal, basta terminar ~1 ensaio a cada 
 
 ## Newsletter da edição
 
-Envio é manual, no dashboard do Resend (Broadcasts):
+**Automática**: o mesmo workflow `publish` que solta o post dispara `scripts/broadcast.mjs` — um broadcast do Resend por idioma (título + description + link), só depois do post responder 200 em produção. Salvaguardas: edição com o mesmo nome já existente no Resend não é reenviada (idempotente em re-runs), audience vazia é pulada sem erro, e o `{{{RESEND_UNSUBSCRIBE_URL}}}` vai no rodapé. Segredos em GitHub → Settings → Secrets (`RESEND_API_KEY`, `RESEND_AUDIENCE_ID_PT/_EN`, `NEWSLETTER_FROM_EMAIL`).
 
-1. resend.com → Broadcasts → New → audience **stoic.log pt** (e outra edição para **en**).
-2. Escreva a chamada do ensaio + link. Inclua `{{{RESEND_UNSUBSCRIBE_URL}}}` no rodapé (o editor oferece; é obrigatório).
-3. Send. Quem se descadastra é filtrado automaticamente nos próximos envios.
+Testar sem enviar: `node --env-file=.env.local scripts/broadcast.mjs --dry-run <slug>`.
+
+**Manual (fallback)**: resend.com → Broadcasts → New → audience do idioma; chamada + link; inclua `{{{RESEND_UNSUBSCRIBE_URL}}}` no rodapé (obrigatório). Quem se descadastra é filtrado automaticamente nos próximos envios.
 
 ## Manutenção rápida
 
