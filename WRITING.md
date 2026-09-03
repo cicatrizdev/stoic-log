@@ -19,7 +19,7 @@ content/posts/<slug>/
 ---
 title: 'Todo código morre'
 description: 'Até 160 caracteres; vira a meta description e o texto dos cards.'
-date: '2026-08-25' # data de publicação (ordena as listagens)
+date: '2026-08-25' # data de publicação (ordena as listagens; num draft, é a data AGENDADA)
 updated: '2026-09-01' # opcional; nunca anterior a date
 tags: ['stoicism', 'legacy-code'] # slugs registrados em src/content/tags.ts
 series: 'memento-mori' # opcional; registrada em src/content/series.ts
@@ -63,23 +63,30 @@ npm run build   # gate de conteúdo: frontmatter, tags, séries, pares
 
 ## Publicar
 
-1. Escreva com `draft: true` (pode até fazer push — produção não mostra; previews sim).
-2. No dia: remova `draft: true` **dos dois arquivos** e ajuste `date` para o dia da publicação.
-3. `git commit` + `git push origin main` → a Vercel deploya (~1 min).
-4. Confira em https://log.cicatriz.dev — RSS, sitemap, busca e OG image atualizam sozinhos no build.
+**Cadência: quinzenal, aos domingos.**
 
-## "Agendar"
+### Agendado (o padrão)
 
-Não há scheduler — o padrão é a **fila de drafts**: ensaios prontos ficam com `draft: true` e são soltos na cadência (quinzenal). Publicar leva 2 minutos ou um pedido ao Claude ("publica o post X"). Se um dia quiser agendamento real, dá pra adicionar um GitHub Action com cron que remove a flag na data — peça ao Claude.
+Publicar é datar: um ensaio pronto fica com `draft: true` e `date` marcando o **domingo em que deve sair**. Todo dia às ~09:00 (BRT) o workflow `publish` (`.github/workflows/publish.yml`) roda `scripts/publish-due.mjs`: drafts cuja `date` chegou perdem a flag nos dois arquivos, o commit vai pra main e a Vercel deploya. Se o cron falhar num dia, o próximo run publica o atrasado (catch-up).
 
-### Fila atual (2026-08-25)
+Testar o que sairia numa data: `PUBLISH_TODAY=2026-09-21 node scripts/publish-due.mjs --dry-run`. Disparar manualmente: aba Actions → publish → Run workflow.
 
-| ordem | slug                      | trilha                | sugestão |
-| ----- | ------------------------- | --------------------- | -------- |
-| ✔ ar  | you-dont-control-the-deploy | dichotomy-of-control | 25/08    |
-| 1     | postmortem-premeditatio   | premeditatio-malorum  | ~08/09   |
-| 2     | all-code-dies             | memento-mori          | ~22/09   |
-| 3     | hype-is-not-your-business | askesis               | ~06/10   |
+### Manual (furar a fila)
+
+1. Remova `draft: true` **dos dois arquivos** e ajuste `date` para hoje.
+2. `git commit` + `git push origin main` → a Vercel deploya (~1 min).
+3. Confira em https://log.cicatriz.dev — RSS, sitemap, busca e OG image atualizam sozinhos no build.
+
+### Fila atual (2026-09-03)
+
+| ordem | slug                        | trilha               | agendado p/ |
+| ----- | --------------------------- | -------------------- | ----------- |
+| ✔ ar  | you-dont-control-the-deploy | dichotomy-of-control | 25/08       |
+| 1     | hype-is-not-your-business   | askesis              | dom 07/09   |
+| 2     | postmortem-premeditatio     | premeditatio-malorum | dom 21/09   |
+| 3     | all-code-dies               | memento-mori         | dom 05/10   |
+
+Para manter a fila viva na cadência quinzenal, basta terminar ~1 ensaio a cada 2 semanas.
 
 ## Newsletter da edição
 

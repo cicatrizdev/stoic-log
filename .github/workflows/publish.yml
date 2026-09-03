@@ -1,0 +1,43 @@
+name: publish
+
+# Publishes queued drafts on their scheduled date: a draft whose frontmatter
+# `date` has arrived (America/Sao_Paulo) gets `draft: true` removed and the
+# change pushed to main. Vercel's Git integration picks up the push and
+# deploys; its build validates the content, so a bad state never ships.
+#
+# Note: pushes made with GITHUB_TOKEN do not trigger other workflows, so
+# ci.yml does not run on these commits — the Vercel build is the gate.
+
+on:
+  schedule:
+    - cron: '0 12 * * *' # 09:00 America/Sao_Paulo (no DST since 2019)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: node scripts/publish-due.mjs
+      - name: commit and push
+        run: |
+          if git diff --quiet; then
+            echo "nothing due today"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          slugs=$(git diff --name-only | cut -d/ -f2 | sort -u | paste -sd ' ' -)
+          git add content/posts
+          git commit -m "chore: publish ${slugs} (scheduled)"
+          git push

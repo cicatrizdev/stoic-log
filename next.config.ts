@@ -6,7 +6,7 @@ const csp = [
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data:",
   "font-src 'self'",
-  "frame-src https://giscus.app https://www.youtube.com https://open.spotify.com",
+  'frame-src https://giscus.app https://www.youtube.com https://open.spotify.com',
   "connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com",
   "object-src 'none'",
   "base-uri 'self'",

@@ -201,7 +201,9 @@ export async function postsBySeries(
 ): Promise<ResolvedPost[]> {
   return (await listPosts(locale))
     .filter((p) => p.canonical.series === series)
-    .sort((a, b) => (a.canonical.seriesOrder ?? 0) - (b.canonical.seriesOrder ?? 0))
+    .sort(
+      (a, b) => (a.canonical.seriesOrder ?? 0) - (b.canonical.seriesOrder ?? 0)
+    )
 }
 
 export type SeriesPosition = {
