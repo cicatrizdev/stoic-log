@@ -96,7 +96,13 @@ O email abre com a epígrafe do ensaio (extraída do `<Epigraph>`), assunto é o
 
 **Manual (fallback)**: resend.com → Broadcasts → New → audience do idioma; chamada + link; inclua `{{{RESEND_UNSUBSCRIBE_URL}}}` no rodapé (obrigatório). Quem se descadastra é filtrado automaticamente nos próximos envios.
 
-## Manutenção rápida
+### Avatar do remetente
+
+O avatar na caixa de entrada é decidido pelo cliente de email a partir do endereço `log@cicatriz.dev` — não vai no corpo do email. Três frentes, por ordem de retorno:
+
+1. **Gmail (maior parte dos assinantes)**: o Gmail mostra a foto da conta Google dona do endereço remetente. Como `cicatriz.dev` já é Google (MX), basta `log@` existir como usuário/alias com foto no perfil — ou criar uma conta Google gratuita ("usar meu endereço de email atual") com `log@cicatriz.dev` e subir `public/icons/icon-512.png` como foto. Propaga em ~24–48 h.
+2. **Gravatar**: gravatar.com → adicionar `log@cicatriz.dev` → subir o mesmo `icon-512.png`. Cobre Proton, Thunderbird e apps que consultam Gravatar.
+3. **BIMI** (padrão por DNS): o logo já está hospedado em `https://log.cicatriz.dev/bimi.svg` (SVG Tiny PS, "S" em path). Requer DMARC com `p=quarantine`/`p=reject` (hoje está `p=none`) e o TXT `default._bimi.cicatriz.dev` → `v=BIMI1; l=https://log.cicatriz.dev/bimi.svg`. **Atenção**: Gmail/Yahoo/Apple só exibem BIMI com certificado VMC/CMC pago (exige marca registrada) — sem ele o alcance é só Fastmail/Zoho e afins. Antes de endurecer o DMARC, conferir nos relatórios `rua` que Google (email pessoal) e Resend (newsletter, DKIM `resend._domainkey` já alinhado) estão passando, senão email legítimo vai pra spam.
 
 - **Nova tag/trilha**: registre em `src/content/tags.ts` / `src/content/series.ts` (label/título nas duas línguas).
 - **Trilha sonora do header**: `src/content/site.ts` → `soundtrack.url` (YouTube = com volume; Spotify = embed simples).
