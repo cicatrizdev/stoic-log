@@ -92,7 +92,7 @@ Para manter a fila viva na cadência quinzenal, basta terminar ~1 ensaio a cada 
 
 **Automática**: o mesmo workflow `publish` que solta o post dispara `scripts/broadcast.mjs` — um broadcast do Resend por idioma (título + description + link), só depois do post responder 200 em produção. Salvaguardas: edição com o mesmo nome já existente no Resend não é reenviada (idempotente em re-runs), audience vazia é pulada sem erro, e o `{{{RESEND_UNSUBSCRIBE_URL}}}` vai no rodapé. Segredos em GitHub → Settings → Secrets (`RESEND_API_KEY`, `RESEND_AUDIENCE_ID_PT/_EN`, `NEWSLETTER_FROM_EMAIL`).
 
-Testar sem enviar: `node --env-file=.env.local scripts/broadcast.mjs --dry-run <slug>`.
+O email abre com a epígrafe do ensaio (extraída do `<Epigraph>`), assunto é o título seco, e o CTA mostra o tempo de leitura. Testar sem enviar: `node --env-file=.env.local scripts/broadcast.mjs --dry-run <slug>`. Preview real na própria caixa (audiences só com você): `--test` (nome de broadcast único, não interfere no dedupe do envio de verdade).
 
 **Manual (fallback)**: resend.com → Broadcasts → New → audience do idioma; chamada + link; inclua `{{{RESEND_UNSUBSCRIBE_URL}}}` no rodapé (obrigatório). Quem se descadastra é filtrado automaticamente nos próximos envios.
 

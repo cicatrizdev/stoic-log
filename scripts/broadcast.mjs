@@ -3,9 +3,11 @@
  * broadcast per locale, to that locale's audience. Run by the publish
  * workflow right after the draft flags are flipped and pushed.
  *
- * Usage: node scripts/broadcast.mjs [--dry-run] [--no-wait] <slug> [slug...]
+ * Usage: node scripts/broadcast.mjs [--dry-run] [--no-wait] [--test] <slug>...
  *   --dry-run  print what would be sent, call no API
  *   --no-wait  skip waiting for the post URL to be live (post already deployed)
+ *   --test     unique broadcast name (bypasses the resend guard) and no wait —
+ *              for template previews against an audience that only contains you
  *
  * Env: RESEND_API_KEY, RESEND_AUDIENCE_ID_PT, RESEND_AUDIENCE_ID_EN,
  *      NEWSLETTER_FROM_EMAIL. A broadcast whose name already exists in
@@ -22,7 +24,8 @@ const API = 'https://api.resend.com'
 
 const args = process.argv.slice(2)
 const dryRun = args.includes('--dry-run')
-const noWait = args.includes('--no-wait')
+const isTest = args.includes('--test')
+const noWait = args.includes('--no-wait') || isTest
 const slugs = args.filter((a) => !a.startsWith('--'))
 
 if (slugs.length === 0) {
@@ -47,33 +50,78 @@ const copy = {
   pt: {
     intro: 'Novo ensaio no ar:',
     cta: 'ler o ensaio →',
+    minutes: (m) => `${m} min de leitura`,
     unsubscribe: 'cancelar assinatura',
   },
   en: {
     intro: 'New essay is up:',
     cta: 'read the essay →',
+    minutes: (m) => `${m} min read`,
     unsubscribe: 'unsubscribe',
   },
 }
 
-function renderHtml(locale, title, description, url) {
-  const c = copy[locale]
-  return [
-    '<div style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;max-width:560px;margin:0 auto;padding:24px;color:#26251f;line-height:1.6">',
-    '<p style="color:#8a8474;margin:0 0 24px">stoic.log</p>',
-    `<p style="margin:0 0 4px">${c.intro}</p>`,
-    `<h1 style="font-size:20px;margin:0 0 12px"><a href="${url}" style="color:#26251f">${title}</a></h1>`,
-    `<p style="margin:0 0 20px;color:#4a4638">${description}</p>`,
-    `<p style="margin:0 0 32px"><a href="${url}" style="color:#a3781f">${c.cta}</a></p>`,
-    '<hr style="border:none;border-top:1px solid #d8d2c2;margin:0 0 16px">',
-    `<p style="font-size:12px;color:#8a8474;margin:0">— Pedro Mello · <a href="${SITE_URL}" style="color:#8a8474">log.cicatriz.dev</a> · <a href="{{{RESEND_UNSUBSCRIBE_URL}}}" style="color:#8a8474">${c.unsubscribe}</a></p>`,
-    '</div>',
-  ].join('\n')
+/** The classical quote that opens the essay — the email opens the same way. */
+function extractEpigraph(source) {
+  const m = /<Epigraph\s+source="([^"]+)"\s*>([\s\S]*?)<\/Epigraph>/.exec(
+    source
+  )
+  if (!m) return null
+  return { source: m[1], text: m[2].replace(/\s+/g, ' ').trim() }
 }
 
-function renderText(locale, title, description, url) {
+/** Same crude word count the site uses (src/lib/posts/reading-time.ts). */
+function readingMinutes(source) {
+  const text = source
+    .replace(/```[\s\S]*?```/g, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/[#>*_[\]()`|-]/g, ' ')
+  const words = text.split(/\s+/).filter(Boolean).length
+  return Math.max(1, Math.round(words / 200))
+}
+
+function renderHtml(locale, post) {
   const c = copy[locale]
-  return [c.intro, '', title, description, '', url].join('\n')
+  const { title, description, url, epigraph, minutes } = post
+  const parts = [
+    '<div style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;max-width:560px;margin:0 auto;padding:24px;color:#26251f;line-height:1.6">',
+    '<p style="color:#8a8474;margin:0 0 28px">stoic.log</p>',
+  ]
+  if (epigraph) {
+    parts.push(
+      '<blockquote style="margin:0 0 28px;padding:0 0 0 16px;border-left:2px solid #a3781f">',
+      `<p style="font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:17px;margin:0 0 8px;color:#26251f">${epigraph.text}</p>`,
+      `<p style="font-size:12px;color:#8a8474;margin:0">— ${epigraph.source}</p>`,
+      '</blockquote>'
+    )
+  }
+  parts.push(
+    `<p style="margin:0 0 4px;color:#4a4638">${c.intro}</p>`,
+    `<h1 style="font-size:20px;margin:0 0 12px"><a href="${url}" style="color:#26251f">${title}</a></h1>`,
+    `<p style="margin:0 0 20px;color:#4a4638">${description}</p>`,
+    `<p style="margin:0 0 32px"><a href="${url}" style="color:#a3781f;font-weight:bold">${c.cta}</a> <span style="color:#8a8474;font-size:12px">· ${c.minutes(minutes)}</span></p>`,
+    '<hr style="border:none;border-top:1px solid #d8d2c2;margin:0 0 16px">',
+    `<p style="font-size:12px;color:#8a8474;margin:0">— Pedro Mello · <a href="${SITE_URL}" style="color:#8a8474">log.cicatriz.dev</a> · <a href="{{{RESEND_UNSUBSCRIBE_URL}}}" style="color:#8a8474">${c.unsubscribe}</a></p>`,
+    '</div>'
+  )
+  return parts.join('\n')
+}
+
+function renderText(locale, post) {
+  const c = copy[locale]
+  const lines = []
+  if (post.epigraph) {
+    lines.push(`"${post.epigraph.text}"`, `— ${post.epigraph.source}`, '')
+  }
+  lines.push(
+    c.intro,
+    '',
+    `${post.title} (${c.minutes(post.minutes)})`,
+    post.description,
+    '',
+    post.url
+  )
+  return lines.join('\n')
 }
 
 async function resend(path, init) {
@@ -127,7 +175,9 @@ let failed = false
 
 for (const slug of slugs) {
   for (const locale of LOCALES) {
-    const name = `${slug} (${locale})`
+    const name = isTest
+      ? `${slug} (${locale}) test-${Date.now()}`
+      : `${slug} (${locale})`
     try {
       let raw
       try {
@@ -147,19 +197,26 @@ for (const slug of slugs) {
         console.log(`${name}: already ${prior.status} in Resend — skipping`)
         continue
       }
-      const { title, description } = matter(raw).data
-      const url = `${SITE_URL}/${locale}/posts/${slug}`
-      const subject = `stoic.log — ${title}`
+      const { data, content } = matter(raw)
+      const post = {
+        title: data.title,
+        description: data.description,
+        url: `${SITE_URL}/${locale}/posts/${slug}`,
+        epigraph: extractEpigraph(content),
+        minutes: readingMinutes(content),
+      }
+      // The sender name already says stoic.log — the subject is the title.
+      const subject = post.title
 
       if (dryRun) {
-        console.log(`would send ${name}: "${subject}" → ${url}`)
+        console.log(`would send ${name}: "${subject}" → ${post.url}`)
         continue
       }
       if (await audienceIsEmpty(audienceId)) {
         console.log(`${name}: audience has no subscribers — skipping`)
         continue
       }
-      if (!noWait) await waitForLive(url)
+      if (!noWait) await waitForLive(post.url)
 
       // A leftover draft with this name (e.g. a previously failed send) is
       // reused so the edition never goes out twice under two broadcast ids.
@@ -173,8 +230,8 @@ for (const slug of slugs) {
               audience_id: audienceId,
               from,
               subject,
-              html: renderHtml(locale, title, description, url),
-              text: renderText(locale, title, description, url),
+              html: renderHtml(locale, post),
+              text: renderText(locale, post),
             }),
           })
         ).id
