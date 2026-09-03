@@ -2,3 +2,10 @@
   margin-top: var(--space-6);
   min-height: 10rem;
 }
+
+/* giscus injects div.giscus > iframe.giscus-frame; iframes default to 300px
+   wide, so the widget must be stretched to the column explicitly. */
+.giscus :global(.giscus),
+.giscus :global(.giscus-frame) {
+  width: 100%;
+}
