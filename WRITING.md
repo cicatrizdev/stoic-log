@@ -69,7 +69,7 @@ npm run build   # gate de conteúdo: frontmatter, tags, séries, pares
 
 Publicar é datar: um ensaio pronto fica com `draft: true` e `date` marcando o **domingo em que deve sair**. Todo dia às ~09:00 (BRT) o workflow `publish` (`.github/workflows/publish.yml`) roda `scripts/publish-due.mjs`: drafts cuja `date` chegou perdem a flag nos dois arquivos, o commit vai pra main e a Vercel deploya. Se o cron falhar num dia, o próximo run publica o atrasado (catch-up).
 
-Testar o que sairia numa data: `PUBLISH_TODAY=2026-09-21 node scripts/publish-due.mjs --dry-run`. Disparar manualmente: aba Actions → publish → Run workflow.
+Testar o que sairia numa data: `PUBLISH_TODAY=2026-09-20 node scripts/publish-due.mjs --dry-run`. Disparar manualmente: aba Actions → publish → Run workflow.
 
 ### Manual (furar a fila)
 
@@ -82,9 +82,9 @@ Testar o que sairia numa data: `PUBLISH_TODAY=2026-09-21 node scripts/publish-du
 | ordem | slug                        | trilha               | agendado p/ |
 | ----- | --------------------------- | -------------------- | ----------- |
 | ✔ ar  | you-dont-control-the-deploy | dichotomy-of-control | 25/08       |
-| 1     | hype-is-not-your-business   | askesis              | dom 07/09   |
-| 2     | postmortem-premeditatio     | premeditatio-malorum | dom 21/09   |
-| 3     | all-code-dies               | memento-mori         | dom 05/10   |
+| 1     | hype-is-not-your-business   | askesis              | dom 06/09   |
+| 2     | postmortem-premeditatio     | premeditatio-malorum | dom 20/09   |
+| 3     | all-code-dies               | memento-mori         | dom 04/10   |
 
 Para manter a fila viva na cadência quinzenal, basta terminar ~1 ensaio a cada 2 semanas.
 
