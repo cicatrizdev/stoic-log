@@ -11,6 +11,7 @@ export const tags = {
   practice: { label: { en: 'practice', pt: 'prática' } },
   'legacy-code': { label: { en: 'legacy code', pt: 'código legado' } },
   hype: { label: { en: 'hype', pt: 'hype' } },
+  ai: { label: { en: 'ai', pt: 'ia' } },
   postmortem: { label: { en: 'post-mortems', pt: 'post-mortems' } },
 } as const satisfies Record<string, TagDef>
 

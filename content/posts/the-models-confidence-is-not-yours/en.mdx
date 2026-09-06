@@ -1,0 +1,62 @@
+---
+title: "The model's confidence is not yours"
+description: "Epictetus on Copilot review: the model's output is an impression, not a judgment — and only the second is up to you."
+date: '2026-10-18'
+tags: ['stoicism', 'ai', 'practice']
+series: 'dichotomy-of-control'
+seriesOrder: 2
+draft: true
+---
+
+<Epigraph source="Epictetus, Enchiridion, 1.5">
+  When an impression appears, say to it: you are just an impression, and not
+  at all what you appear to be. Then examine it and put it to the test.
+</Epigraph>
+
+Autocomplete just offered forty lines. They compile. The names are decent. There is a polite comment in the middle, the kind a senior would write after a good night's sleep. The cursor blinks on Tab as if the decision had already been made.
+
+In that moment there are two possible people inside you. One accepts. The other reads. The first tends to close the ticket earlier; the second tends to find the `user.isAdmin` that was never defined, three functions down, delivered with the same serene confidence.
+
+The difference between them is not "being against AI". It is the usual question: **what, exactly, is up to you?**
+
+## The two lists, again
+
+The model is on the second list. It always was. You do not control the next token, the tone of certainty the training reinforced, or the fact that the industry discovered *looking right* engages harder than *being right* — the same incentive, incidentally, we already know from the feed. What appears on screen is an **impression**, in the technical sense Epictetus gave the word: something that shows up. Not a judgment. Judgment is what you do with what shows up.
+
+On one side, what is yours:
+
+- Reading the diff as if it had been written by a very articulate, slightly rushed junior.
+- Refusing the chunk you could not explain at standup.
+- The test that proves the assumption, not the one that proves the file compiled.
+- The responsibility when this reaches production — it does not transfer. The model is not in the incident channel.
+
+On the other: the paragraph's confidence. This week's benchmark. Whether "everyone is already using it". What the model *meant*.
+
+```ts
+// It compiles. The names are good. The premise is invented.
+if (user.isAdmin) grant(user)
+// user.isAdmin does not exist. The model asserted that it does.
+// Tab is not a review.
+```
+
+## Control is not refusing the tool
+
+The lazy reading stops here: "so I won't use it". It is the opposite, and again the *right* responsibility. You don't control the model. You control the prompt you wrote, the context you pasted, the test that was missing, the habit of treating the output as someone else's draft. The entire preparation lived on the first list *before* Tab — just as the feature flag lived on the first list before 6:47pm.
+
+Whoever fights the fact ("why did the model get it wrong?") spends the resource the review requires. Whoever accepts that the model does not judge for you still has attention left to find the hole.
+
+<Callout label="in practice">
+  Before accepting a block you did not write, run Epictetus' impression test
+  out loud: *"you are an impression, not what you appear to be."* Then one
+  question only: **would I defend this change in a review if a colleague had
+  sent it?** If the answer is "I haven't read enough to know", you already
+  know what is up to you. Tab can wait.
+</Callout>
+
+## The most confident junior on the team
+
+Every team has had the person who speaks well and errs early. The model is that person at scale: fluent, available, no bruised ego when you discard the paragraph — and no duty to be correct. Treating that fluency as seniority is a category error. Seniority is the examination of the impression, not the impression.
+
+Epictetus told you to test every appearance by the chief rule: is this up to me, or not? The model's confidence is not up to you. The merge is.
+
+The next token will keep arriving looking like the truth. That is not up to you. Whoever examines what it appears to be — that one is.

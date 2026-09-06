@@ -61,6 +61,12 @@ npm run check   # lint + typecheck + prettier
 npm run build   # gate de conteúdo: frontmatter, tags, séries, pares
 ```
 
+## Preview (pre-prod)
+
+Drafts já aparecem em qualquer deploy que não seja Production (`VERCEL_ENV !== 'production'`). O preview da Vercel é o ambiente pra validar layout e fila — travado pelo **Standard Protection** (precisa estar logado na Vercel no projeto). Produção continua pública e sem drafts.
+
+Empurre um branch que não seja `main` (`git push -u origin preview`). A Vercel gera uma URL `*.vercel.app`; abra logado na conta do projeto. Preview também sai com `noindex`.
+
 ## Publicar
 
 **Cadência: quinzenal, aos domingos.**
@@ -77,14 +83,16 @@ Testar o que sairia numa data: `PUBLISH_TODAY=2026-09-20 node scripts/publish-du
 2. `git commit` + `git push origin main` → a Vercel deploya (~1 min).
 3. Confira em https://log.cicatriz.dev — RSS, sitemap, busca e OG image atualizam sozinhos no build.
 
-### Fila atual (2026-09-03)
+### Fila atual (2026-09-06)
 
-| ordem | slug                        | trilha               | agendado p/ |
-| ----- | --------------------------- | -------------------- | ----------- |
-| ✔ ar  | you-dont-control-the-deploy | dichotomy-of-control | 25/08       |
-| 1     | hype-is-not-your-business   | askesis              | dom 06/09   |
-| 2     | postmortem-premeditatio     | premeditatio-malorum | dom 20/09   |
-| 3     | all-code-dies               | memento-mori         | dom 04/10   |
+| ordem | slug                               | trilha               | agendado p/ |
+| ----- | ---------------------------------- | -------------------- | ----------- |
+| ✔ ar  | you-dont-control-the-deploy        | dichotomy-of-control | 25/08       |
+| ✔ ar  | hype-is-not-your-business          | askesis              | 06/09       |
+| 1     | postmortem-premeditatio            | premeditatio-malorum | dom 20/09   |
+| 2     | all-code-dies                      | memento-mori         | dom 04/10   |
+| 3     | the-models-confidence-is-not-yours | dichotomy-of-control | dom 18/10   |
+| 4     | dont-outsource-the-reps            | askesis              | dom 01/11   |
 
 Para manter a fila viva na cadência quinzenal, basta terminar ~1 ensaio a cada 2 semanas.
 
