@@ -41,7 +41,8 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          slugs=$(git diff --name-only | cut -d/ -f2 | sort -u | paste -sd ' ' -)
+          # paths are content/posts/<slug>/<locale>.mdx — field 3 is the slug
+          slugs=$(git diff --name-only | cut -d/ -f3 | sort -u | paste -sd ' ' -)
           git add content/posts
           git commit -m "chore: publish ${slugs} (scheduled)"
           git push
