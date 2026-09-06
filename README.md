@@ -27,7 +27,7 @@ seriesOrder: 1 # required iff series is set
 draft: true # optional; hidden in production only
 ```
 
-A missing translation falls back to the original with a notice; drafts are visible in dev and preview deploys. Components available inside MDX: `<Epigraph source="…">`, `<Callout label="…">`.
+A missing translation falls back to the original with a notice; drafts are visible in dev and Vercel Preview (Production hides them). Preview deploys are gated by Vercel Standard Protection. Components available inside MDX: `<Epigraph source="…">`, `<Callout label="…">`.
 
 ## Development
 
