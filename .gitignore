@@ -30,3 +30,8 @@ next-env.d.ts
 /.playwright-mcp
 /*.png
 /.claude
+
+# editor kitchen — voice guide, fila, LinkedIn drafts (not the essays)
+WRITING.md
+WRITING.local.md
+/promo/
