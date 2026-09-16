@@ -82,3 +82,7 @@
   margin-bottom: var(--space-4);
   max-width: var(--measure);
 }
+
+.coffee {
+  margin-top: var(--space-12);
+}

@@ -53,7 +53,7 @@ export function buildMetadata(locale: Locale): Metadata {
       title: ui.meta.title,
       description: ui.meta.description,
     },
-    robots: { index: true, follow: true },
+    robots: publicRobots(),
   }
 }
 
@@ -97,8 +97,15 @@ export function buildPostMetadata(
       title: post.frontmatter.title,
       description: post.frontmatter.description,
     },
-    robots: post.isFallback
-      ? { index: false, follow: true }
-      : { index: true, follow: true },
+    robots: publicRobots(post.isFallback),
   }
+}
+
+function publicRobots(fallback = false): Metadata['robots'] {
+  if (process.env.VERCEL_ENV !== 'production') {
+    return { index: false, follow: false }
+  }
+  return fallback
+    ? { index: false, follow: true }
+    : { index: true, follow: true }
 }

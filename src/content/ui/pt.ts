@@ -88,9 +88,14 @@ export const pt: UiStrings = {
     errorRateLimited: 'Muitas tentativas — tente de novo em alguns minutos.',
     errorFailed: 'Não foi possível assinar agora. Tente mais tarde.',
   },
+  coffee: {
+    blurb: 'Se isto foi útil, um café basta.',
+    cta: 'oferecer um café',
+  },
   footer: {
     rss: 'rss',
     source: 'código',
+    coffee: 'café',
     colophon: 'um log de',
   },
   notFound: {

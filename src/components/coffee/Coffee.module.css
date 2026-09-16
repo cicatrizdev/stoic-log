@@ -1,0 +1,130 @@
+.offering {
+  max-width: var(--measure);
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  color: inherit;
+  text-decoration: none;
+  text-decoration-color: transparent;
+}
+
+.copy {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.blurb {
+  font-style: italic;
+  font-size: var(--text-lg);
+  line-height: 1.4;
+  color: color-mix(in srgb, var(--fg) 85%, var(--bg));
+}
+
+.cta {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-style: normal;
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.link:hover .cta,
+.link:focus-visible .cta {
+  text-decoration-color: var(--accent);
+}
+
+.cup {
+  width: 3.6rem;
+  height: auto;
+  flex-shrink: 0;
+  overflow: visible;
+  color: var(--fg);
+}
+
+.steam path {
+  stroke: var(--dim);
+  stroke-width: 1.35;
+  stroke-linecap: round;
+  fill: none;
+  opacity: 0.45;
+  transform-origin: center bottom;
+  transform-box: fill-box;
+}
+
+.handle,
+.body,
+.rim {
+  stroke: var(--fg);
+  stroke-width: 1.7;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.body {
+  fill: var(--surface);
+}
+
+.handle,
+.rim {
+  fill: none;
+}
+
+.liquid {
+  fill: var(--accent);
+  transform: translateY(26px);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.surface {
+  fill: color-mix(in srgb, var(--accent) 72%, var(--fg));
+}
+
+.link:hover .liquid,
+.link:focus-visible .liquid {
+  transform: translateY(2px);
+}
+
+.link:hover .steam path,
+.link:focus-visible .steam path {
+  opacity: 0.8;
+}
+
+.link:hover .steam path:nth-child(1),
+.link:focus-visible .steam path:nth-child(1) {
+  animation: steam 2.4s ease-in-out infinite;
+}
+
+.link:hover .steam path:nth-child(2),
+.link:focus-visible .steam path:nth-child(2) {
+  animation: steam 2.6s ease-in-out 0.15s infinite;
+}
+
+.link:hover .steam path:nth-child(3),
+.link:focus-visible .steam path:nth-child(3) {
+  animation: steam 2.2s ease-in-out 0.3s infinite;
+}
+
+@keyframes steam {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateY(-5px) translateX(1px);
+    opacity: 0.9;
+  }
+}
+
+@media (max-width: 480px) {
+  .blurb {
+    font-size: var(--text-md);
+  }
+}

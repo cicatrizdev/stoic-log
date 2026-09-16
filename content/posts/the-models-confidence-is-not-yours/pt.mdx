@@ -1,0 +1,62 @@
+---
+title: 'A confiança do modelo não é sua'
+description: 'Epicteto no review do Copilot: a saída do modelo é uma impressão, não um julgamento — e só o segundo depende de você.'
+date: '2026-10-18'
+tags: ['stoicism', 'ai', 'practice']
+series: 'dichotomy-of-control'
+seriesOrder: 2
+draft: true
+---
+
+<Epigraph source="Epicteto, Encheirídion, 1.5">
+  Quando te ocorrer uma representação, diz-lhe: és apenas uma representação, e
+  de modo algum o que aparentas ser. Depois examina-a e põe-na à prova.
+</Epigraph>
+
+O autocomplete acaba de oferecer quarenta linhas. Compilam. Os nomes são decentes. Há um comentário educado no meio, o tipo de comentário que um sênior escreveria se tivesse dormido bem. O cursor pisca no Tab como se a decisão já tivesse sido tomada.
+
+Nesse momento existem duas pessoas possíveis dentro de você. Uma aceita. A outra lê. A primeira costuma fechar o ticket mais cedo; a segunda costuma encontrar o `user.isAdmin` que nunca foi definido, três funções abaixo, com a mesma confiança serena.
+
+A diferença entre as duas não é "ser contra IA". É a pergunta de sempre: **o que, exatamente, depende de você?**
+
+## As duas listas, de novo
+
+O modelo está na segunda lista. Sempre esteve. Você não controla o próximo token, o tom de certeza que o treino reforçou, nem o fato de a indústria ter descoberto que *parecer certo* engaja mais do que *estar certo* — o mesmo incentivo, aliás, que já conhecemos do feed. O que sai na tela é uma **impressão**, no sentido técnico que Epicteto dava à palavra: algo que aparece. Não um julgamento. Julgamento é o que você faz com o que aparece.
+
+De um lado, o que é seu:
+
+- Ler o diff como se tivesse sido escrito por um júnior muito articulado e um pouco apressado.
+- Recusar o trecho que você não conseguiria explicar no standup.
+- O teste que prova a suposição, não o que prova que o arquivo compilou.
+- A responsabilidade quando isso chegar em produção — ela não transfere. O modelo não está no canal de incidentes.
+
+Do outro: a confiança do parágrafo. O benchmark da semana. Se "todo mundo já está usando". O que o modelo *quis* dizer.
+
+```ts
+// Compila. Os nomes são bons. A premissa é inventada.
+if (user.isAdmin) grant(user)
+// user.isAdmin não existe. O modelo afirmou que existe.
+// Tab não é review.
+```
+
+## Controle não é recusar a ferramenta
+
+A leitura preguiçosa para aqui: "então não uso". É o oposto, e de novo a responsabilidade *certa*. Você não controla o modelo. Você controla o prompt que fez, o contexto que colou, o teste que faltava, o hábito de tratar a saída como rascunho alheio. A preparação inteira estava na primeira lista *antes* do Tab — exatamente como o feature flag estava na primeira lista antes das 18h47.
+
+Quem briga com o fato ("por que o modelo errou?") gasta o recurso que o review exige. Quem aceita que o modelo não julga por você ainda tem atenção sobrando para achar o buraco.
+
+<Callout label="na prática">
+  Antes de aceitar um bloco que você não escreveu, faça o teste da
+  representação de Epicteto em voz alta: *"és uma impressão, não o que
+  aparentas ser."* Depois uma pergunta só: **eu defenderia essa mudança num
+  review se um colega tivesse mandado?** Se a resposta for "eu não li o
+  suficiente para saber", você já sabe o que depende de você. O Tab espera.
+</Callout>
+
+## O júnior mais confiante do time
+
+Toda equipe já teve a pessoa que fala bem e erra cedo. O modelo é essa pessoa em escala: fluente, disponível, sem ego ferido quando você descarta o parágrafo — e sem nenhum dever de estar certo. Tratar essa fluência como senioridade é o erro de categoria. Senioridade é o exame da impressão, não a impressão.
+
+Epicteto mandava colocar cada representação à prova pela regra principal: isto depende de mim, ou não? A confiança do modelo não depende de você. O merge, sim.
+
+O próximo token vai continuar saindo com cara de verdade. Isso não depende de você. Quem examina o que aparenta ser — essa, sim.
