@@ -14,6 +14,9 @@ export function Footer({ locale }: { locale: Locale }) {
           <a href={site.repo} rel="noopener noreferrer" target="_blank">
             {ui.footer.source}
           </a>
+          <a href={site.coffee} rel="noopener noreferrer" target="_blank">
+            {ui.footer.coffee}
+          </a>
         </p>
         <p className={styles.colophon}>
           {ui.footer.colophon}{' '}

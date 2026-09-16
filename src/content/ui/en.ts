@@ -87,9 +87,14 @@ export const en: UiStrings = {
     errorRateLimited: 'Too many attempts — try again in a few minutes.',
     errorFailed: 'Could not subscribe right now. Try again later.',
   },
+  coffee: {
+    blurb: 'If this was useful, a coffee is enough.',
+    cta: 'buy a coffee',
+  },
   footer: {
     rss: 'rss',
     source: 'source',
+    coffee: 'coffee',
     colophon: 'a log by',
   },
   notFound: {

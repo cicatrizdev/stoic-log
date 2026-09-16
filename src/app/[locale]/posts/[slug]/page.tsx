@@ -11,6 +11,7 @@ import { TranslationNotice } from '@/components/post/TranslationNotice'
 import { SeriesNav } from '@/components/post/SeriesNav'
 import { Giscus } from '@/components/comments/Giscus'
 import { SubscribeForm } from '@/components/newsletter/SubscribeForm'
+import { Coffee } from '@/components/coffee/Coffee'
 import { PostJsonLd } from '@/components/seo/JsonLd'
 import styles from './page.module.css'
 
@@ -59,6 +60,8 @@ export default async function PostPage({ params }: Props) {
       <footer className={styles.footer}>
         <TagList slugs={post.canonical.tags} locale={locale} />
         {position && <SeriesNav position={position} locale={locale} />}
+
+        <Coffee locale={locale} />
 
         <section className={styles.newsletter}>
           <p className={styles.newsletterBlurb}>{ui.newsletter.blurb}</p>

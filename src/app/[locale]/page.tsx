@@ -5,6 +5,7 @@ import { listPosts } from '@/lib/posts'
 import { isSeriesSlug, type SeriesSlug } from '@/content/series'
 import { PostCard } from '@/components/post/PostCard'
 import { SubscribeForm } from '@/components/newsletter/SubscribeForm'
+import { Coffee } from '@/components/coffee/Coffee'
 import { BlogJsonLd } from '@/components/seo/JsonLd'
 import styles from './page.module.css'
 
@@ -85,6 +86,10 @@ export default async function Home({
         <p className={styles.newsletterBlurb}>{ui.newsletter.blurb}</p>
         <SubscribeForm locale={locale} labels={ui.newsletter} />
       </section>
+
+      <div className={styles.coffee}>
+        <Coffee locale={locale} />
+      </div>
     </>
   )
 }

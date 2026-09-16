@@ -88,9 +88,14 @@ export type UiStrings = {
     errorRateLimited: string
     errorFailed: string
   }
+  coffee: {
+    blurb: string
+    cta: string
+  }
   footer: {
     rss: string
     source: string
+    coffee: string
     colophon: string
   }
   notFound: {

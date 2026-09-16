@@ -20,6 +20,7 @@ export const site = {
     github: 'https://github.com/cicatrizdev',
     linkedin: 'https://www.linkedin.com/in/pedro-c-mello',
   },
+  coffee: 'https://buymeacoffee.com/cicatrizdev',
 } as const
 
 export type Site = typeof site
