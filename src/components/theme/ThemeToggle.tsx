@@ -8,9 +8,15 @@ type Props = {
   dark: string
 }
 
+function isDark(root: HTMLElement): boolean {
+  if (root.dataset.theme === 'dark') return true
+  if (root.dataset.theme === 'light') return false
+  return window.matchMedia('(prefers-color-scheme: dark)').matches
+}
+
 function toggle() {
   const root = document.documentElement
-  const next = root.dataset.theme === 'dark' ? 'light' : 'dark'
+  const next = isDark(root) ? 'light' : 'dark'
   root.dataset.theme = next
   try {
     localStorage.setItem('theme', next)
@@ -22,7 +28,6 @@ function toggle() {
 /**
  * Renders identical markup on server and client; which label is visible is
  * decided purely by CSS from `[data-theme]`, so there is nothing to hydrate.
- * Hidden entirely until the ThemeScript has run (no JS → no toggle).
  */
 export function ThemeToggle({ label, light, dark }: Props) {
   return (

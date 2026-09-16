@@ -1,5 +1,5 @@
 .toggle {
-  display: none;
+  display: inline-flex;
   align-items: baseline;
   background: none;
   border: 0;
@@ -7,10 +7,6 @@
   cursor: pointer;
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-}
-
-:global(html[data-theme]) .toggle {
-  display: inline-flex;
 }
 
 .flag {
@@ -22,10 +18,17 @@
   color: var(--accent);
 }
 
-:global(html[data-theme='dark']) .whenLight {
+:global(html[data-theme='dark']) .whenLight,
+:global(html:not([data-theme='dark'])) .whenDark {
   display: none;
 }
 
-:global(html:not([data-theme='dark'])) .whenDark {
-  display: none;
+@media (prefers-color-scheme: dark) {
+  :global(html:not([data-theme])) .whenLight {
+    display: none;
+  }
+
+  :global(html:not([data-theme])) .whenDark {
+    display: inline;
+  }
 }
