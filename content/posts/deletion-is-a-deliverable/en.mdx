@@ -1,0 +1,50 @@
+---
+title: 'Deletion is a deliverable'
+description: "Operational memento mori: plan your own code's death — flags with expiry, sunset in the PR, ownership that includes letting go."
+date: '2026-11-29'
+tags: ['stoicism', 'legacy-code', 'practice']
+series: 'memento-mori'
+seriesOrder: 2
+draft: true
+---
+
+<Epigraph source="Epictetus, Enchiridion, 3">
+  If you are fond of a ceramic cup, remind yourself that it is ceramic cups in
+  general of which you are fond. Then, if it breaks, you will not be disturbed.
+</Epigraph>
+
+You opened the feature PR. Green. A comment praising the clarity. Someone asked in review where the sunset plan lived — and the room did that polite silence reserved for a tasteless joke told out of turn.
+
+It wasn't a joke. It was the only adult question.
+
+In the previous essay on this trail, the point was inevitability: all code dies, and confusing the artifact with yourself is emotional tech debt. Here the tense changes again. It is not enough to know the cup breaks. Epictetus tells you to **name its nature while it is still in your hand** — so the break is not an insult, but a foreseen event.
+
+## Ownership includes the funeral
+
+The industry celebrates the ship and buries deprecation in the eternal backlog called "later." Feature flag with no expiry. "Temporary" module on its third birthday. Legacy endpoint nobody turns off because "there is still one client" — the client is an internal job someone could migrate in an afternoon.
+
+That is not prudence. It is attachment dressed as stability. Healthy ownership, on the first list, is care for what is under the keyboard **today** — including writing the condition under which it ceases to exist. Sick ownership is demanding that the world preserve what you made. The previous essay already named the price: you become the migration's difficult chapter.
+
+The operational version is dry: **deletion is a deliverable**. It has a ticket, acceptance criteria, an owner. If the feature earned a birth PR, it earns a death PR — or at least the date and the trigger written on the day it was born.
+
+## Expiry is a kind of design
+
+A feature flag without expiry is memento mori denied. You installed the switch and forgot that the switch is also code, also ages, also lies on the dashboard. A flag with a validity — a date, a metric, or "remove by sprint N" — is the Roman whisper at the triumph: remember that this dies, preferably while someone still recalls why it was born.
+
+The same holds for the name, the module, the "just for now" table. Writing code that is easy to delete, in the previous essay, was architecture. Here it is a calendar: the RFC that includes a *Sunset* section, the ADR that admits *reversible until*, the ship checklist that asks *when does this go away?*. Without an answer, you did not ship a feature. You shipped a permanent tenant in your working memory.
+
+<Callout label="in practice">
+  On every non-trivial feature PR, one mandatory line in the description:
+  **sunset** — date or condition, and the removal ticket (it may be open). New
+  flags without `expires` do not merge. "Temporary" modules without an owner
+  of the deletion do not merge. This is not bureaucracy; it is Epictetus in
+  review: say what nature the cup is before you grow fond of its design.
+</Callout>
+
+## Returned, not lost
+
+Epictetus corrects the vocabulary: do not say *I lost it*, say *I returned it*. The code you sunset was not stolen by the replanning. It was returned to time — the same time the previous essay called a river. The pain of the delete is usually proportional to the lie you told yourself at ship: *this is permanent*. Permanent was the lie. The delete only collects the interest.
+
+There is a specific vanity in deprecating your own code: it hurts more. That is why it matters more. Whoever only deletes other people's legacy trains cheap courage. Whoever schedules the funeral of what they wrote last week trains the right faculty — letting go without drama, on time, with the same care they used to ship.
+
+The next ship will ask only for the happy path. That is not up to you. Whoever writes, in the same PR, the date when it goes away — that is.

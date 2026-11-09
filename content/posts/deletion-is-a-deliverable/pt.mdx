@@ -1,0 +1,50 @@
+---
+title: 'A deleção é uma entrega'
+description: 'Memento mori operacional: planeje a morte do próprio código — flag com validade, sunset no PR, ownership que inclui largar.'
+date: '2026-11-29'
+tags: ['stoicism', 'legacy-code', 'practice']
+series: 'memento-mori'
+seriesOrder: 2
+draft: true
+---
+
+<Epigraph source="Epicteto, Encheirídion, 3">
+  Se você gosta de uma xícara de cerâmica, lembre a si mesmo de que gosta de
+  xícaras em geral. Assim, se ela quebrar, você não se perturbará.
+</Epigraph>
+
+Você abriu o PR da feature. Verde. Comentário elogiando a clareza. Alguém perguntou no review onde ficava o plano de sunset — e a sala fez aquele silêncio educado de quem trata a pergunta como piada de mau gosto fora de hora.
+
+Não era. Era a única pergunta adulta.
+
+No ensaio anterior desta trilha, o ponto era inevitabilidade: todo código morre, e confundir o artefato com você é dívida técnica emocional. Aqui o tempo muda de novo. Não basta saber que a xícara quebra. Epicteto manda **nomear a natureza dela enquanto ainda está na mão** — para que a quebra não seja um insulto, seja um evento previsto.
+
+## Ownership inclui o funeral
+
+A indústria celebra o ship e enterra a deprecação no backlog eterno chamado "depois". Feature flag sem data de validade. Módulo "temporário" com três aniversários. Endpoint legado que ninguém desliga porque "ainda tem um cliente" — o cliente é um job interno que alguém poderia migrar numa tarde.
+
+Isso não é prudência. É apego com disfarce de estabilidade. Ownership saudável, na primeira lista, é cuidar do que está sob o teclado **hoje** — inclusive escrever a condição sob a qual isso deixa de existir. Ownership doente é exigir que o mundo preserve o que você fez. O ensaio anterior já disse o preço: você vira o capítulo difícil da migração.
+
+A versão operacional é seca: **a deleção é uma entrega**. Tem ticket, tem critério de aceite, tem dono. Se a feature mereceu um PR de nascimento, merece um PR de óbito — ou, no mínimo, a data e o gatilho escritos no mesmo dia em que ela nasceu.
+
+## Validade é um tipo de design
+
+Feature flag sem expiry é memento mori negado. Você instalou o interruptor e esqueceu que interruptor também é código, também envelhece, também mente no dashboard. Flag com validade — data, métrica, ou "remover até o sprint N" — é o sussurro romano no triunfo: lembre-se de que isto morre, de preferência enquanto ainda há quem se lembre por que nasceu.
+
+O mesmo vale para o nome, o módulo, a tabela "só por enquanto". Escrever fácil de deletar, no ensaio anterior, era arquitetura. Aqui é calendário: o RFC que inclui a seção *Sunset*, o ADR que admite *reversible until*, o checklist de ship que pergunta *quando isto some?*. Sem resposta, você não lançou uma feature. Lançou um inquilino permanente no seu cognitivo.
+
+<Callout label="na prática">
+  No PR de toda feature não trivial, uma linha obrigatória na descrição:
+  **sunset** — data ou condição, e o ticket de remoção (pode estar aberto).
+  Flag nova sem `expires` não mergeia. Módulo "temporário" sem dono da
+  deleção não mergeia. Não é burocracia; é Epicteto no review: diga de que
+  natureza é a xícara antes de apegar-se ao desenho dela.
+</Callout>
+
+## Devolver, não perder
+
+Epicteto corrige o vocabulário: não diga *perdi*, diga *devolvi*. O código que você aposenta não foi roubado pelo replanejamento. Foi devolvido ao tempo — o mesmo tempo que o ensaio anterior descreveu como rio. A dor do delete costuma ser proporcional à mentira que você contou a si mesmo no ship: *isto é permanente*. Permanente era a mentira. O delete só cobra os juros.
+
+Há uma vaidade específica em deprecar o próprio código: dói mais. Por isso importa mais. Quem só deleta legado alheio treina coragem barata. Quem agenda o funeral do que escreveu na semana passada treina a faculdade certa — largar sem drama, no prazo, com o mesmo cuidado com que shipou.
+
+O próximo ship vai pedir só o caminho feliz. Isso não depende de você. Quem escreve, no mesmo PR, a data em que aquilo some — essa, sim.
